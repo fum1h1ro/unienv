@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+LIB_PATH = File.expand_path("../../lib", __FILE__)
+ASSETS_PATH = File.expand_path("../../lib/assets", __FILE__)
+$:.unshift LIB_PATH
+#require 'rubygems'
+require 'commander/import'
+require 'unienv'
+require 'optparse'
+require 'fileutils'
+require 'erb'
+
+$unity_app_path = "/Applications/Unity/Unity.app/Contents/MacOS/Unity"
+
+program :version, UniEnv::VERSION
+program :description, 'Unity Environment Helper'
+program :help_formatter, :compact
+
+global_option('--verbose', 'VERBOSE') { $verbose = true }
+#global_option('-p', '--project PATH', 'specify Unity project path') { |path| $project_path = path }
+#global_option('-u', '--unity PATH', 'specify Unity application path') { |path| $unity_app_path = path }
+
+
+#p LIB_PATH
+#p ASSETS_PATH
+#app = UniEnv::App.new
+
+
+
+default_command :help
+
+always_trace!
+
+
