@@ -205,7 +205,6 @@ command :select do |c|
     raise "not installed #{version}" if list[version].nil?
     link = '/Applications/Unity'
     FileUtils.rm(link) if File.exist?(link)
-    sleep 4
     FileUtils.symlink("#{list[version]}", link, { :force => true })
 
 
