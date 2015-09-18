@@ -1,13 +1,11 @@
 # Ubb
 
-Helper for Unity batch build.
+Helper for selecting Unity version.
 
-[![Gem Version](https://badge.fury.io/rb/ubb.svg)](http://badge.fury.io/rb/ubb)
-
+[![Gem Version](https://badge.fury.io/rb/unienv.png)](http://badge.fury.io/rb/unienv)
 
 ## Description
 
-Unity Editor からビルドしたりパッケージを入出力する時に使うツールです。
 
 
 ## Installation
@@ -15,59 +13,53 @@ Unity Editor からビルドしたりパッケージを入出力する時に使�
 Install it yourself as:
 
 ```
-$ gem install ubb
+$ gem install unienv
+```
+
+or
+
+```
+$ sudo gem install unienv
 ```
 
 ## Usage
 
 ```
-$ ubb export -o hoge.unitypackage Plugins/hoge
-$ ubb import hoge.unitypackage
+$ unienv [command]
 ```
 
-Unity のプロジェクトフォルダは、明示的に指定されなければカレントディレクトリ以下で、最初に見つかったものを自動的に選択します。
-明示的に指定するには `--project PATH` オプションを使用してください。
+### commands
 
+#### list
 
+Display list of installable Unity versions.
 
-### export
-
-指定したフォルダ及びファイルを .unitypackage としてエクスポートします。
-
-```
-ubb export -o '出力ファイル名' 'パッケージに含むファイル名（フォルダ可＆複数指定可）'
-```
-
-### import
-
-指定した .unitypackage をプロジェクトにインポートします。
+Add `--local` option, display list of installed version.
 
 ```
-ubb import 'パッケージファイル名'
+$ unienv list                                                                                                                                                                                                                                                                                                   [master>]
+  5.2.0f3
+  5.1.3p3
+  5.1.3p2
+  5.1.3p1
+  5.1.2p3
+  5.1.2p2
+  5.1.2p1
 ```
 
-### build
+#### install
 
-指定したプロジェクトのビルドを行います。
+Install Unity Editor to local that specified version.
 
 ```
-ubb build --output '出力先フォルダ' --target [ios] --config [development|release|distribution]
+$ unienv install 5.2
+$ unienv install 5.1.3p2
 ```
-
-* target
-  * ビルドターゲットの指定。現在は `ios` のみ。
-* config
-  * ビルドコンフィグの指定。
-
-
-
-
-
 
 
 ## Contributing
 
-1. Fork it ( https://github.com/fum1h1ro/ubb/fork )
+1. Fork it ( https://github.com/fum1h1ro/unienv/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
