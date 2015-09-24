@@ -2,7 +2,8 @@ require "unienv/version"
 require "yaml"
 require "tmpdir"
 require "open-uri"
-
+require "rexml/document"
+require "unienv/rss"
 
 module UniEnv
   def self.sh(cmd)
@@ -105,32 +106,33 @@ module UniEnv
     find_cache("StandardAssets", version)
   end
 
-  def self.download(uri, path)
+  def self.download_to_s(uri)
     totalsize = nil
     size = 0
     progress = 0
-    sio =
-      OpenURI.open_uri(
-        uri,
-        {
-          :content_length_proc => lambda { |sz|
-            totalsize = sz
-            print "total: #{sz / 1024}KB\n"
-          },
-          :progress_proc => lambda { |sz|
-            unless totalsize.nil?
-              size = sz
-              rate = ((size.to_f / totalsize.to_f) * 10).to_i
-              if rate > progress
-                print ". #{sz / 1024}KB\n"
-                progress = rate
-              end
+    OpenURI.open_uri(
+      uri,
+      {
+        :content_length_proc => lambda { |sz|
+          totalsize = sz
+          print "total: #{sz / 1024}KB\n"
+        },
+        :progress_proc => lambda { |sz|
+          unless totalsize.nil?
+            size = sz
+            rate = ((size.to_f / totalsize.to_f) * 10).to_i
+            if rate > progress
+              print ". #{sz / 1024}KB\n"
+              progress = rate
             end
-          },
-        }
-      )
+          end
+        },
+      }
+    )
+  end
+  def self.download(uri, path)
     File.open(path, "w+") do |f|
-      f.write(sio.read)
+      f.write(download_to_s(uri).read)
     end
   end
 
@@ -216,8 +218,47 @@ end
 
 
 
+command :fetch do |c|
+
+  c.action do |args, options|
+    Rss.fetch_rss("http://unity3d.com/unity/qa/patch-releases/latest.xml")
 
 
+    #s = UniEnv.download_to_s("http://unity3d.com/unity/qa/patch-releases/latest.xml").read
+    #s.gsub!(/&lt;/, '<')
+    #s.gsub!(/&gt;/, '>')
+    #doc = REXML::Document.new(s)
+    #doc.elements.each('rss/channel/item') do |e|
+    #  e.elements.each('title') do |t|
+    #    p t.text
+    #  end
+    #  #p e['title']
+    #end
+
+
+
+
+
+
+
+
+
+
+    #sio = StringIO.new
+    #REXML::Formatters::Pretty.new.write(doc, sio)
+    #puts sio.string
+
+    #puts doc
+
+
+
+  end
+
+
+
+
+
+end
 
 
 

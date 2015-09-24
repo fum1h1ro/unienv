@@ -1,4 +1,4 @@
-# Ubb
+# unienv
 
 Helper for selecting Unity version.
 

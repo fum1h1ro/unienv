@@ -1,4 +1,10 @@
 version:
+  5.2.1f1:
+    editor: http://netstorage.unity3d.com/unity/44735ea161b3/MacEditorInstaller/Unity-5.2.1f1.pkg
+    standard_assets: http://netstorage.unity3d.com/unity/44735ea161b3/MacStandardAssetsInstaller/StandardAssets-5.2.1f1.pkg
+  5.2.0p1:
+    editor: http://beta.unity3d.com/download/cd0778e591b3/MacEditorInstaller/Unity-5.2.0p1.pkg
+    standard_assets: http://beta.unity3d.com/download/cd0778e591b3/MacStandardAssetsInstaller/StandardAssets-5.2.0p1.pkg
   5.2.0f3:
     editor: http://netstorage.unity3d.com/unity/e7947df39b5c/MacEditorInstaller/Unity-5.2.0f3.pkg
     standard_assets: http://netstorage.unity3d.com/unity/e7947df39b5c/MacStandardAssetsInstaller/StandardAssets-5.2.0f3.pkg
