@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["fum1h1ro"]
   spec.email         = ["fumihiro@gmail.com"]
   spec.summary       = %q{UniEnv}
-  spec.description   = %q{CLI for helping batch building from Unity Editor}
+  spec.description   = %q{Unity Editor installer}
   spec.homepage      = "https://github.com/fum1h1ro/unienv"
   spec.license       = "MIT"
 
