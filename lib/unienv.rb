@@ -85,7 +85,7 @@ module UniEnv
     FileUtils.mkdir_p(tmpdir)
   end
   def self.clean_tmpdir
-    FileUtils.remove_entry_secure(tmpdir)
+    FileUtils.remove_entry_secure(tmpdir, true)
   end
   def self.make_cache_path(type, version)
     "#{tmpdir}/#{type}-#{version}.pkg"
@@ -185,9 +185,9 @@ command :install do |c|
       standard_assets_cache = UniEnv.find_standard_assets_cache(version)
     end
 
-    p editor_cache
-    p standard_assets_cache
-    p candidates
+    #p editor_cache
+    #p standard_assets_cache
+    #p candidates
     #UniEnv.clean_tmpdir(tmppath)
 
     UniEnv.sh "installer -package #{editor_cache[0]} -target /"

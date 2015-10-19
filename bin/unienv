@@ -23,8 +23,7 @@ global_option('--verbose', 'VERBOSE') { $verbose = true }
 #p LIB_PATH
 #p ASSETS_PATH
 #app = UniEnv::App.new
-
-
+UniEnv.clean_tmpdir
 
 default_command :help
 
