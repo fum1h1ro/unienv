@@ -16,6 +16,7 @@ program :description, 'Unity Environment Helper'
 program :help_formatter, :compact
 
 global_option('--verbose', 'VERBOSE') { $verbose = true }
+global_option('--clean', 'CLEAN CACHE') { UniEnv.clean_tmpdir }
 #global_option('-p', '--project PATH', 'specify Unity project path') { |path| $project_path = path }
 #global_option('-u', '--unity PATH', 'specify Unity application path') { |path| $unity_app_path = path }
 
@@ -23,7 +24,7 @@ global_option('--verbose', 'VERBOSE') { $verbose = true }
 #p LIB_PATH
 #p ASSETS_PATH
 #app = UniEnv::App.new
-UniEnv.clean_tmpdir
+#UniEnv.clean_tmpdir
 
 default_command :help
 

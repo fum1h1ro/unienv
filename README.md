@@ -52,8 +52,8 @@ $ unienv list                                                                   
 Install Unity Editor to local that specified version.
 
 ```
-$ unienv install 5.2
-$ unienv install 5.1.3p2
+$ sudo unienv install 5.2
+$ sudo unienv install 5.1.3p2
 ```
 
 

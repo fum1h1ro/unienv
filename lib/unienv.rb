@@ -2,6 +2,7 @@ require "unienv/version"
 require "yaml"
 require "tmpdir"
 require "open-uri"
+require "httpclient"
 require "rexml/document"
 require "unienv/rss"
 
@@ -110,6 +111,7 @@ module UniEnv
     totalsize = nil
     size = 0
     progress = 0
+    print "download: #{uri}\n"
     OpenURI.open_uri(
       uri,
       {
@@ -131,9 +133,32 @@ module UniEnv
     )
   end
   def self.download(uri, path)
-    File.open(path, "w+") do |f|
+=begin
+    File.open(path, 'w') do |f|
       f.write(download_to_s(uri).read)
     end
+=end
+    http_client = HTTPClient.new
+    uri = URI.parse(URI.encode(uri))
+    header = http_client.head(uri, nil, nil)
+    #p header
+    #p header.headers
+    totalsize = header.nil? ? 0 : header.headers["Content-Length"].to_i
+    http_client.receive_timeout = 60 * 120
+    size = 0
+    readblock = 0
+    File.open(path, 'w') do |file|
+      http_client.get_content(uri, nil, nil) do |chunk|
+        size += chunk.size
+        file.write chunk
+        blk = size / (100 * 1024 * 1024)
+        if readblock < blk
+          printf("Recv: %dMB\n", size / (1024 * 1024))
+          readblock = blk
+        end
+      end
+    end
+    printf("Recv: %dMB\n", size / (1024 * 1024))
   end
 
 
