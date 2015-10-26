@@ -258,7 +258,7 @@ command :open do |c|
     ver = UniEnv.get_projversion
     list = UniEnv.enum_installed
     if list.has_key?(ver)
-      system "#{list[ver]}/Unity.app/Contents/MacOS/Unity -projectPath #{Dir.pwd}"
+      system "#{list[ver]}/Unity.app/Contents/MacOS/Unity -projectPath #{Dir.pwd} &"
     else
       raise "not installed #{ver}"
     end
