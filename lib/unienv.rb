@@ -160,6 +160,16 @@ module UniEnv
     end
     printf("Recv: %dMB\n", size / (1024 * 1024))
   end
+  def self.get_projversion
+    Dir.glob("**/ProjectVersion.txt") do |e|
+      File.open(e, "r").readlines.each do |t|
+        if t.strip.chomp =~ /\Am_EditorVersion:\s+(.+)\Z/
+          return $1
+        end
+      end
+    end
+    ''
+  end
 
 
 end
@@ -241,6 +251,19 @@ command :select do |c|
   end
 end
 
+command :open do |c|
+  c.syntax = 'unienv open'
+  c.summary = 'Read Unity version from "ProjectVersion.txt", and open project by specified version'
+  c.action do |args, options|
+    ver = UniEnv.get_projversion
+    list = UniEnv.enum_installed
+    if list.has_key?(ver)
+      system "#{list[ver]}/Unity.app/Contents/MacOS/Unity -projectPath #{Dir.pwd}"
+    else
+      raise "not installed #{ver}"
+    end
+  end
+end
 
 
 command :fetch do |c|
