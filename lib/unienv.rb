@@ -202,6 +202,9 @@ command :install do |c|
   c.syntax = 'unienv install [version]'
   c.summary = 'install specified version'
   c.action do |args, options|
+    if ENV['USER'] != 'root'
+      raise "please execute by su"
+    end
     raise 'specify version' unless args.size != 0
     config = UniEnv.load_config
     candidates = UniEnv.search_version(config, args[0])

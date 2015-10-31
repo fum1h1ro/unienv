@@ -1,4 +1,7 @@
 version:
+  5.2.2p2:
+    editor: http://beta.unity3d.com/download/67d68477bb52/MacEditorInstaller/Unity-5.2.2p2.pkg
+    standard_assets: http://beta.unity3d.com/download/67d68477bb52/MacStandardAssetsInstaller/StandardAssets-5.2.2p2.pkg
   5.2.2p1:
     editor: http://beta.unity3d.com/download/6dd5cd7ea574/MacEditorInstaller/Unity-5.2.2p1.pkg
     standard_assets: http://beta.unity3d.com/download/6dd5cd7ea574/MacStandardAssetsInstaller/StandardAssets-5.2.2p1.pkg
