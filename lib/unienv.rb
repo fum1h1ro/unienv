@@ -189,9 +189,10 @@ command :list do |c|
         print "  #{k}\n"
       end
     else
+      list = UniEnv.enum_installed
       config = UniEnv.load_config
       config['version'].sort.reverse.each do |k, v|
-        print "  #{k}\n"
+        print "  #{k}#{list.include?(k) ? ' - installed' : ''}\n"
       end
     end
   end
