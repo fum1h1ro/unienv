@@ -1,4 +1,22 @@
 version:
+  5.3.0f2:
+    editor: http://beta.unity3d.com/download/ceb02979c32c/MacEditorInstaller/Unity-5.3.0f2.pkg
+    standard_assets: http://beta.unity3d.com/download/ceb02979c32c/MacStandardAssetsInstaller/StandardAssets-5.3.0f2.pkg
+    mac: http://beta.unity3d.com/download/ceb02979c32c/MacEditorTargetInstaller/UnitySetup-Mac-Support-for-Editor-5.3.0f2.pkg
+    webgl: http://beta.unity3d.com/download/ceb02979c32c/MacEditorTargetInstaller/UnitySetup-WebGL-Support-for-Editor-5.3.0f2.pkg
+    ios: http://beta.unity3d.com/download/ceb02979c32c/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-5.3.0f2.pkg
+    android: http://beta.unity3d.com/download/ceb02979c32c/MacEditorTargetInstaller/UnitySetup-Android-Support-for-Editor-5.3.0f2.pkg
+  5.3.0f1:
+    editor: http://beta.unity3d.com/download/b948b362cb65/MacEditorInstaller/Unity-5.3.0f1.pkg
+    standard_assets: http://beta.unity3d.com/download/b948b362cb65/MacStandardAssetsInstaller/StandardAssets-5.3.0f1.pkg
+    ios: http://beta.unity3d.com/download/b948b362cb65/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-5.3.0f1.pkg
+    android: http://beta.unity3d.com/download/b948b362cb65/MacEditorTargetInstaller/UnitySetup-Android-Support-for-Editor-5.3.0f1.pkg
+  5.3.0b6:
+    editor: http://beta.unity3d.com/download/46b1550107d8/MacEditorInstaller/Unity-5.3.0b6.pkg
+    standard_assets: http://beta.unity3d.com/download/46b1550107d8/MacStandardAssetsInstaller/StandardAssets-5.3.0b6.pkg
+  5.2.2p4:
+    editor: http://beta.unity3d.com/download/93d0b2db7c56/MacEditorInstaller/Unity-5.2.2p4.pkg
+    standard_assets: http://beta.unity3d.com/download/93d0b2db7c56/MacStandardAssetsInstaller/StandardAssets-5.2.2p4.pkg
   5.2.2p3:
     editor: http://beta.unity3d.com/download/75b999ee8bfd/MacEditorInstaller/Unity-5.2.2p3.pkg
     standard_assets: http://beta.unity3d.com/download/75b999ee8bfd/MacStandardAssetsInstaller/StandardAssets-5.2.2p3.pkg

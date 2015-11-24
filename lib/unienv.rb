@@ -72,11 +72,14 @@ module UniEnv
     end
     vers
   end
+  def self.uri(config, type, version)
+    config['version'][version][type]
+  end
   def self.editor_uri(config, version)
-    config['version'][version]['editor']
+    url(config, 'editor', version)
   end
   def self.standard_assets_uri(config, version)
-    config['version'][version]['standard_assets']
+    url(config, 'standard_assets', version)
   end
 
   def self.tmpdir
@@ -202,6 +205,8 @@ end
 command :install do |c|
   c.syntax = 'unienv install [version]'
   c.summary = 'install specified version'
+  c.option '--ios', 'install target support for iOS'
+  c.option '--android', 'install target support for Android'
   c.action do |args, options|
     if ENV['USER'] != 'root'
       raise "please execute by su"
@@ -213,25 +218,19 @@ command :install do |c|
     version = candidates[0]
 
     UniEnv.make_tmpdir
-    editor_cache = UniEnv.find_editor_cache(version)
-    standard_assets_cache = UniEnv.find_standard_assets_cache(version)
-    if editor_cache.empty?
-      UniEnv.download(UniEnv.editor_uri(config, version), UniEnv.make_editor_cache_path(version))
-      editor_cache = UniEnv.find_editor_cache(version)
+    list = []
+    list << ['editor', UniEnv.make_editor_cache_path(version)]
+    list << ['standard_assets', UniEnv.make_standard_assets_cache_path(version)]
+    list << ['mac', UniEnv.make_cache_path('mac', version)]
+    list << ['webgl', UniEnv.make_cache_path('webgl', version)]
+    list << ['ios', UniEnv.make_cache_path('ios', version)] if options.ios
+    list << ['android', UniEnv.make_cache_path('android', version)] if options.android
+    list.each do |l|
+      UniEnv.download(UniEnv.uri(config, l[0], version), l[1])
     end
-    if standard_assets_cache.empty?
-      UniEnv.download(UniEnv.standard_assets_uri(config, version), UniEnv.make_standard_assets_cache_path(version))
-      standard_assets_cache = UniEnv.find_standard_assets_cache(version)
+    list.each do |l|
+      UniEnv.sh "installer -package #{l[1]} -target /"
     end
-
-    #p editor_cache
-    #p standard_assets_cache
-    #p candidates
-    #UniEnv.clean_tmpdir(tmppath)
-
-    UniEnv.sh "installer -package #{editor_cache[0]} -target /"
-    UniEnv.sh "installer -package #{standard_assets_cache[0]} -target /"
-
     FileUtils.mv("/Applications/Unity", "/Applications/Unity#{version}")
   end
 end
