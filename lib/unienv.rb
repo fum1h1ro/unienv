@@ -226,10 +226,12 @@ command :install do |c|
     list << ['ios', UniEnv.make_cache_path('ios', version)] if options.ios
     list << ['android', UniEnv.make_cache_path('android', version)] if options.android
     list.each do |l|
-      UniEnv.download(UniEnv.uri(config, l[0], version), l[1])
+      path = UniEnv.uri(config, l[0], version)
+      UniEnv.download(path, l[1]) unless path.nil?
     end
     list.each do |l|
-      UniEnv.sh "installer -package #{l[1]} -target /"
+      path = UniEnv.uri(config, l[0], version)
+      UniEnv.sh "installer -package #{l[1]} -target /" unless path.nil?
     end
     FileUtils.mv("/Applications/Unity", "/Applications/Unity#{version}")
   end
