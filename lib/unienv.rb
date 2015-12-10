@@ -270,6 +270,23 @@ command :open do |c|
   end
 end
 
+command :path do |c|
+  c.syntax = 'unienv path'
+  c.summary = ''
+  c.action do |args, options|
+    ver = UniEnv.get_projversion
+    list = UniEnv.enum_installed
+    if list.has_key?(ver)
+      print "#{list[ver]}"
+    else
+      raise "not installed #{ver}"
+    end
+  end
+end
+
+
+
+
 
 command :fetch do |c|
 
